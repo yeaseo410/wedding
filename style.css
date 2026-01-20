@@ -8,11 +8,19 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: var(--main-bg);
-    font-family: 'Noto Serif KR', serif; /* 명조체 계열 추천 */
-    color: var(--text-color);
-    line-height: 1.8;
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 가로 방향 중앙 정렬 */
+    text-align: center;  /* 텍스트 중앙 정렬 */
+    width: 100%;
+    overflow-x: hidden;  /* 좌우 스크롤 방지 */
+}
+
+section {
+    width: 100%;
+    max-width: 450px;    /* 모바일 가로 최대폭 제한 (세련된 느낌) */
+    margin: 0 auto;      /* 좌우 여백 자동 계산 (중앙 배치) */
+    box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
 }
 
 .main-title {
@@ -372,3 +380,4 @@ summary {
     0%, 100% { transform: scale(1); }
     50% { transform: scale(1.2); color: #e5b3a1; } /* 색상도 살짝 변경 */
 }
+
