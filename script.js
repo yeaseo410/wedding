@@ -1,4 +1,3 @@
-// 1. 스크롤 애니메이션 (요소가 화면에 보일 때 나타남)
 const observerOptions = {
     threshold: 0.2
 };
@@ -31,7 +30,7 @@ class Petal {
     constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height * -1;
-        this.size = Math.random() * 7 + 3;
+        this.size = Math.random() * 8 + 5;
         this.speed = Math.random() * 1 + 1;
         this.angle = Math.random() * 360;
         this.spin = Math.random() * 0.2 - 0.1;
@@ -97,3 +96,82 @@ function copyText(text) {
         alert("계좌번호가 복사되었습니다.");
     });
 }
+// 1. Firebase 초기화 (복사한 설정값으로 교체하세요)
+const firebaseConfig = {
+    apiKey: "YOUR_API_KEY",
+    databaseURL: "YOUR_DATABASE_URL",
+    projectId: "YOUR_PROJECT_ID",
+};
+firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// 2. 메시지 불러오기 (실시간 반영)
+database.ref('messages').on('value', (snapshot) => {
+    const data = snapshot.val();
+    const listElement = document.getElementById('guestbook-list');
+    listElement.innerHTML = ''; // 초기화
+
+    for (let id in data) {
+        const msg = data[id];
+        const card = `
+            <div class="guestbook-card">
+                <div class="name">FROM. ${msg.name}</div>
+                <div class="content">${msg.message}</div>
+                <div class="date">${msg.date}</div>
+            </div>`;
+        listElement.insertAdjacentHTML('afterbegin', card); // 최신글이 위로
+    }
+});
+
+// 3. 메시지 저장하기
+function saveMessage() {
+    const name = document.getElementById('guest-name').value;
+    const message = document.getElementById('guest-message').value;
+    const date = new Date().toLocaleString();
+
+    if (name && message) {
+        database.ref('messages').push({
+            name: name,
+            message: message,
+            date: date
+        });
+        alert("축하 메시지가 등록되었습니다!");
+        toggleInput(); // 창 닫기
+    } else {
+        alert("성함과 메시지를 모두 입력해주세요.");
+    }
+}
+
+const bgm = document.getElementById('bgm');
+const musicContainer = document.getElementById('music-container');
+
+function toggleMusic() {
+    if (bgm.paused) {
+        bgm.play();
+        musicContainer.classList.add('playing');
+        document.querySelector('.music-text').innerText = "BGM OFF";
+    } else {
+        bgm.pause();
+        musicContainer.classList.remove('playing');
+        document.querySelector('.music-text').innerText = "BGM ON";
+    }
+}
+
+var container = document.getElementById('map'); // 지도를 담을 영역의 DOM 레퍼런스
+var options = { 
+    center: new kakao.maps.LatLng(37.5240, 127.1332), // 오륜교회 좌표
+    level: 3 // 확대 레벨
+};
+
+var map = new kakao.maps.Map(container, options); // 지도 생성
+
+// 마커가 표시될 위치입니다 
+var markerPosition  = new kakao.maps.LatLng(37.5240, 127.1332); 
+
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
+
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
