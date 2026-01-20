@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>임승현 & 유예빈의 결혼식에 초대합니다</title>
+    <link rel="stylesheet" href="style.css">
+    <meta property="og:title" content="임승현 & 유예빈 결혼합니다">
+    <meta property="og:description" content="2026년 9월 19일 오후 2시">
+    <meta property="og:image" content="메인사진URL">
+</head>
+<body>
+    <canvas id="sakura"></canvas>
+    
+    <section id="main">
+        <h1>Wedding Invitation</h1>
+        <p>2026. 9. 19. SAT PM 14:00</p>
+    </section>
+
+    <section id="greeting">
+        <h2>초대합니다</h2>
+        <p>저희 두 사람이 사랑으로 만나...</p>
+    </section>
+
+    <section id="gallery">
+        <h2>Gallery</h2>
+        </section>
+
+    <section id="location">
+        <h2>Location</h2>
+        <div id="map" style="width:100%;height:300px;"></div>
+    </section>
+
+    <section id="account">
+        <h2>마음 전하실 곳</h2>
+    </section>
+
+    <details class="account-group">
+    <summary>신랑측 계좌번호 <span class="arrow"></span></summary>
+    <div class="account-list">
+        
+        <div class="account-item">
+            <div class="info">
+                <p class="name">신랑 손준호</p>
+                <p>국민은행 110-123-456789</p>
+            </div>
+            <div class="buttons">
+                <button class="btn-copy" onclick="copyText('110123456789')">복사</button>
+                <a href="카카오페이링크1" class="btn-kakao">💳 CARD</a>
+            </div>
+        </div>
+
+        <div class="account-item">
+            <div class="info">
+                <p class="name">부친 손덕환</p>
+                <p>농협은행 302-987-654321</p>
+            </div>
+            <div class="buttons">
+                <button class="btn-copy" onclick="copyText('302987654321')">복사</button>
+                <a href="카카오페이링크2" class="btn-kakao">💳 CARD</a>
+            </div>
+        </div>
+
+    </div>
+</details>
+
+    <details class="account-group">
+    <summary>신부측 계좌번호 <span class="arrow"></span></summary>
+    <div class="account-list">
+        
+        <div class="account-item">
+            <div class="info">
+                <p class="name">류재권</p>
+                <p>우리은행 348-080-83195</p>
+            </div>
+            <div class="buttons">
+                <button class="btn-copy" onclick="copyText('110123456789')">복사</button>
+                <a href="카카오페이링크1" class="btn-kakao">💳 CARD</a>
+            </div>
+        </div>
+
+        <div class="account-item">
+            <div class="info">
+                <p class="name">박봉연</p>
+                <p>농협은행 302-987-654321</p>
+            </div>
+            <div class="buttons">
+                <button class="btn-copy" onclick="copyText('302987654321')">복사</button>
+                <a href="카카오페이링크2" class="btn-kakao">💳 CARD</a>
+            </div>
+        </div>
+
+    </div>
+    </details>
+    </section>
+
+    <div class="gallery-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+    <img src="pic1.jpg" style="grid-column: span 2;"> <img src="pic2.jpg">
+    <img src="pic3.jpg">
+</div>
+<script src="script.js"></script>
+</body>
+</html>
